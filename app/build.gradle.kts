@@ -1,11 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-parcelize")
+
 }
 
 android {
     namespace = "id.ac.polbeng.ardianto.kabupatenkotariauapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "id.ac.polbeng.ardianto.kabupatenkotariauapp"
@@ -33,6 +35,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    viewBinding {
+        enable = true
+    }
 }
 
 dependencies {
@@ -45,4 +50,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation("com.github.bumptech.glide:glide:4.14.2")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.14.2")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+    implementation("com.github.corouteam:GlideToVectorYou:2.0.0") // Versi yang benar dari JitPack
+    implementation("com.github.MikeOrtiz:TouchImageView:1.4.1")
+    implementation(kotlin("script-runtime"))
 }

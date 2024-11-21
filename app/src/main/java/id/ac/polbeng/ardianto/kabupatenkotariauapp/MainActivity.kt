@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.action_cardview -> {
                 title = "Mode Card View"
+                showRecyclerCardView()
             }
         }
         setActionBarTitle(title)
@@ -69,4 +70,11 @@ class MainActivity : AppCompatActivity() {
         val gridKabKotaAdapter = GridKabKotaAdapter(listData)
         binding.rvKabKota.adapter = gridKabKotaAdapter
     }
+
+    private fun showRecyclerCardView() {
+        binding.rvKabKota.layoutManager = LinearLayoutManager(this)
+        val cardKabKotaAdapter = CardKabKotaAdapter(listData)
+        binding.rvKabKota.adapter = cardKabKotaAdapter
+    }
+
 }

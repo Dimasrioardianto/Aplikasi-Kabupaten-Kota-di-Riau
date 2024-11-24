@@ -13,9 +13,15 @@
         android:theme="@style/Theme.KabupatenKotaRiauApp"
         tools:targetApi="31">
         <activity
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|keyboardHidden"
+            android:name=".ViewPetaActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailKabKotaActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

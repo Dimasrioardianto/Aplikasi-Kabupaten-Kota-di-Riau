@@ -1,5 +1,6 @@
 package id.ac.polbeng.ardianto.kabupatenkotariauapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
@@ -32,5 +33,11 @@ class DetailKabKotaActivity : AppCompatActivity() {
         binding.tvJumlahKecamatan.text = dataKabKota.jumlah_kecamatan.toString()
         binding.tvJumlahKelurahan.text = dataKabKota.jumlah_kelurahan.toString()
         binding.tvJumlahDesa.text = dataKabKota.jumlah_desa.toString()
+
+        binding.btnViewPeta.setOnClickListener {
+            val showViewPeta = Intent(this@DetailKabKotaActivity, ViewPetaActivity::class.java)
+            showViewPeta.putExtra(ViewPetaActivity.EXTRA_URL_PETA, dataKabKota.url_peta_wilayah)
+            startActivity(showViewPeta)
+        }
     }
 }

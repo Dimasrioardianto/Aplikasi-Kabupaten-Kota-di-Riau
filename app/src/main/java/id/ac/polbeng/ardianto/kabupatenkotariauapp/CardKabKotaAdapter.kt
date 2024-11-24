@@ -10,6 +10,14 @@ import id.ac.polbeng.ardianto.kabupatenkotariauapp.databinding.ItemCardKabkotaBi
 class CardKabKotaAdapter(private val listKabKota: ArrayList<KabKota>):
     RecyclerView.Adapter<CardKabKotaAdapter.CardViewHolder>() {
 
+    private lateinit var onItemClickCallback: OnItemClickCallback
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+    interface OnItemClickCallback {
+        fun onItemClicked(data: KabKota)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         val binding = ItemCardKabkotaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CardViewHolder(binding)
@@ -24,6 +32,8 @@ class CardKabKotaAdapter(private val listKabKota: ArrayList<KabKota>):
         holder.binding.tvItemDetail.text = "Pusat Pemerintahan : \n " + kabKota.pusat_pemerintahan
         holder.binding.btnSetShare.setOnClickListener { Toast.makeText(holder.itemView.context,  "Share Data "
                  + kabKota.kabupaten_kota, Toast.LENGTH_SHORT).show() }
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(listKabKota[holder.adapterPosition]) }
         }
 
         override fun getItemCount(): Int = listKabKota.size

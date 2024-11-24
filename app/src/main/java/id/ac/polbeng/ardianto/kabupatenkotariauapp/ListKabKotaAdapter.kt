@@ -10,6 +10,14 @@ import id.ac.polbeng.ardianto.kabupatenkotariauapp.databinding.ItemListKabkotaBi
 class ListKabKotaAdapter(private val listKabKota: ArrayList<KabKota>):
     RecyclerView.Adapter<ListKabKotaAdapter.ListViewHolder>() {
 
+    private lateinit var onItemClickCallback: OnItemClickCallback
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+    interface OnItemClickCallback {
+        fun onItemClicked(data: KabKota)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding =
             ItemListKabkotaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,6 +32,8 @@ class ListKabKotaAdapter(private val listKabKota: ArrayList<KabKota>):
             .into(holder.binding.imgItemPhoto)
         holder.binding.tvItemName.text = kabupaten_kota
         holder.binding.tvItemDetail.text = "Pusat Pemerintahan : " + pusat_pemerintahan
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(listKabKota[holder.adapterPosition]) }
     }
 
     override fun getItemCount(): Int = listKabKota.size

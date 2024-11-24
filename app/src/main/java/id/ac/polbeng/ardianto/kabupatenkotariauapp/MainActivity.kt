@@ -1,5 +1,6 @@
 package id.ac.polbeng.ardianto.kabupatenkotariauapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -63,18 +64,39 @@ class MainActivity : AppCompatActivity() {
         binding.rvKabKota.layoutManager = LinearLayoutManager(this)
         val kabKotaAdapter = ListKabKotaAdapter(listData)
         binding.rvKabKota.adapter = kabKotaAdapter
+        kabKotaAdapter.setOnItemClickCallback(object : ListKabKotaAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: KabKota) {
+                showDataKabKota(data)
+            }
+        })
     }
 
     private fun showRecyclerGrid() {
         binding.rvKabKota.layoutManager = GridLayoutManager(this, 2)
         val gridKabKotaAdapter = GridKabKotaAdapter(listData)
         binding.rvKabKota.adapter = gridKabKotaAdapter
+        gridKabKotaAdapter.setOnItemClickCallback(object : GridKabKotaAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: KabKota) {
+                showDataKabKota(data)
+            }
+        })
     }
 
     private fun showRecyclerCardView() {
         binding.rvKabKota.layoutManager = LinearLayoutManager(this)
         val cardKabKotaAdapter = CardKabKotaAdapter(listData)
         binding.rvKabKota.adapter = cardKabKotaAdapter
+        cardKabKotaAdapter.setOnItemClickCallback(object : CardKabKotaAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: KabKota) {
+                showDataKabKota(data)
+            }
+        })
+    }
+
+    private fun showDataKabKota(data: KabKota){
+        val moveWithObjectIntent = Intent(this@MainActivity, DetailKabKotaActivity::class.java)
+        moveWithObjectIntent.putExtra(DetailKabKotaActivity.EXTRA_KAB_KOTA, data)
+        startActivity(moveWithObjectIntent)
     }
 
 }

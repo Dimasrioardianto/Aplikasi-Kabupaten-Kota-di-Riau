@@ -5,15 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.ac.polbeng.ardianto.kabupatenkotariauapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private var title: String = "Mode List View"
-    private var listData: ArrayList<KabKota> = arrayListOf()
+    private var title: String = "Daftar Wisata Di Riau"
+    private var listData: ArrayList<Wisata> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +22,9 @@ class MainActivity : AppCompatActivity() {
 
         setActionBarTitle(title)
 
-        listData.addAll(KabKotaData.listDataKabKota)
+        listData.addAll(WisataData.listDataWisata)
 
-        showRecylerList()
+        showRecyclerCardView()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -34,69 +33,34 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        setMode(item.itemId)
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun setMode(selectedMode: Int) {
-        when (selectedMode) {
-            R.id.action_list -> {
-                title = "Mode List View"
-                showRecylerList()
-            }
-            R.id.action_grid -> {
-                title = "Mode Grid View"
-                showRecyclerGrid()
-            }
-            R.id.action_cardview -> {
-                title = "Mode Card View"
-                showRecyclerCardView()
+        when (item.itemId) {
+            R.id.action_profile -> {
+                val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)
             }
         }
         setActionBarTitle(title)
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setActionBarTitle(title: String) {
         supportActionBar?.title = title
     }
 
-    private fun showRecylerList(){
-        binding.rvKabKota.layoutManager = LinearLayoutManager(this)
-        val kabKotaAdapter = ListKabKotaAdapter(listData)
-        binding.rvKabKota.adapter = kabKotaAdapter
-        kabKotaAdapter.setOnItemClickCallback(object : ListKabKotaAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: KabKota) {
-                showDataKabKota(data)
-            }
-        })
-    }
-
-    private fun showRecyclerGrid() {
-        binding.rvKabKota.layoutManager = GridLayoutManager(this, 2)
-        val gridKabKotaAdapter = GridKabKotaAdapter(listData)
-        binding.rvKabKota.adapter = gridKabKotaAdapter
-        gridKabKotaAdapter.setOnItemClickCallback(object : GridKabKotaAdapter.OnItemClickCallback{
-            override fun onItemClicked(data: KabKota) {
-                showDataKabKota(data)
-            }
-        })
-    }
-
     private fun showRecyclerCardView() {
         binding.rvKabKota.layoutManager = LinearLayoutManager(this)
         val cardKabKotaAdapter = CardKabKotaAdapter(listData)
         binding.rvKabKota.adapter = cardKabKotaAdapter
-        cardKabKotaAdapter.setOnItemClickCallback(object : CardKabKotaAdapter.OnItemClickCallback{
-            override fun onItemClicked(data: KabKota) {
+        cardKabKotaAdapter.setOnItemClickCallback(object : CardKabKotaAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: Wisata) {
                 showDataKabKota(data)
             }
         })
     }
 
-    private fun showDataKabKota(data: KabKota){
+    private fun showDataKabKota(data: Wisata) {
         val moveWithObjectIntent = Intent(this@MainActivity, DetailKabKotaActivity::class.java)
-        moveWithObjectIntent.putExtra(DetailKabKotaActivity.EXTRA_KAB_KOTA, data)
+        moveWithObjectIntent.putExtra(DetailKabKotaActivity.EXTRA_WISATA, data)
         startActivity(moveWithObjectIntent)
     }
-
 }

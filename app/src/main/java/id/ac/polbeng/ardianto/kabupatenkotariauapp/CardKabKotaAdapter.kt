@@ -7,15 +7,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import id.ac.polbeng.ardianto.kabupatenkotariauapp.databinding.ItemCardKabkotaBinding
 
-class CardKabKotaAdapter(private val listKabKota: ArrayList<KabKota>):
+class CardKabKotaAdapter(private val listWisata: ArrayList<Wisata>) :
     RecyclerView.Adapter<CardKabKotaAdapter.CardViewHolder>() {
 
     private lateinit var onItemClickCallback: OnItemClickCallback
+
+    // Interface untuk menangani klik item
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
+
     interface OnItemClickCallback {
-        fun onItemClicked(data: KabKota)
+        fun onItemClicked(data: Wisata)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
@@ -24,19 +27,31 @@ class CardKabKotaAdapter(private val listKabKota: ArrayList<KabKota>):
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        val kabKota = listKabKota[position]
+        val wisata = listWisata[position]
+
         Glide.with(holder.itemView.context)
-            .load(kabKota.gambar)
+            .load(wisata.gambar)
             .into(holder.binding.imgItemPhoto)
-        holder.binding.tvItemName.text = kabKota.kabupaten_kota
-        holder.binding.tvItemDetail.text = "Pusat Pemerintahan : \n " + kabKota.pusat_pemerintahan
-        holder.binding.btnSetShare.setOnClickListener { Toast.makeText(holder.itemView.context,  "Share Data "
-                 + kabKota.kabupaten_kota, Toast.LENGTH_SHORT).show() }
-        holder.itemView.setOnClickListener {
-            onItemClickCallback.onItemClicked(listKabKota[holder.adapterPosition]) }
+
+        holder.binding.tvItemName.text = wisata.nama
+        holder.binding.tvItemDetail.text = "Lokasi: \n${wisata.lokasi}"
+
+        holder.binding.btnSetShare.setOnClickListener {
+            Toast.makeText(
+                holder.itemView.context,
+                "Share Data: ${wisata.nama}",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
-        override fun getItemCount(): Int = listKabKota.size
-        inner class CardViewHolder (val binding: ItemCardKabkotaBinding):
-            RecyclerView.ViewHolder(binding.root)
+        // Klik pada item
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(listWisata[holder.adapterPosition])
+        }
     }
+
+    override fun getItemCount(): Int = listWisata.size
+
+    inner class CardViewHolder(val binding: ItemCardKabkotaBinding) :
+        RecyclerView.ViewHolder(binding.root)
+}

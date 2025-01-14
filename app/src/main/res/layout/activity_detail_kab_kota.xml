@@ -8,8 +8,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/btn_view_peta">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,14 +47,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/pusat_pemerintahan"
+                        android:text="@string/lokasi_wisata"
                         android:layout_weight="0.3"/>
 
                     <TextView
-                        android:id="@+id/tv_pusat_pemerintahan"
+                        android:id="@+id/tv_lokasi_wisata"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/pusat_pemerintahan"
+                        android:text="@string/lokasi_wisata"
                         android:layout_weight="0.7"/>
 
                 </TableRow>
@@ -69,14 +68,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/bupati_walikota"
+                        android:text="@string/detail_wisata"
                         android:layout_weight="0.3"/>
 
                     <TextView
-                        android:id="@+id/tv_bupati_walikota"
+                        android:id="@+id/tv_detail_wisata"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/bupati_walikota"
+                        android:text="@string/detail_wisata"
                         android:layout_weight="0.7"/>
 
                 </TableRow>
@@ -90,14 +89,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/luas_wilayah"
+                        android:text="@string/rating_wisata"
                         android:layout_weight="0.3"/>
 
                     <TextView
-                        android:id="@+id/tv_luas_wilayah"
+                        android:id="@+id/tv_rating_wisata"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/luas_wilayah"
+                        android:text="@string/rating_wisata"
                         android:layout_weight="0.7"/>
 
                 </TableRow>
@@ -111,77 +110,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/jumlah_penduduk"
+                        android:text="@string/ulasan_wisata"
                         android:layout_weight="0.3"/>
 
                     <TextView
-                        android:id="@+id/tv_jumlah_penduduk"
+                        android:id="@+id/tv_ulasan_wisata"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/jumlah_penduduk"
-                        android:layout_weight="0.7"/>
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:weightSum="1"
-                    android:layout_marginTop="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/jumlah_kecamatan"
-                        android:layout_weight="0.3"/>
-
-                    <TextView
-                        android:id="@+id/tv_jumlah_kecamatan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/jumlah_kecamatan"
-                        android:layout_weight="0.7"/>
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:weightSum="1"
-                    android:layout_marginTop="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/jumlah_kelurahan"
-                        android:layout_weight="0.3"/>
-
-                    <TextView
-                        android:id="@+id/tv_jumlah_kelurahan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/jumlah_kelurahan"
-                        android:layout_weight="0.7"/>
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:weightSum="1"
-                    android:layout_marginTop="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/jumlah_desa"
-                        android:layout_weight="0.3"/>
-
-                    <TextView
-                        android:id="@+id/tv_jumlah_desa"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/jumlah_desa"
+                        android:text="@string/ulasan_wisata"
                         android:layout_weight="0.7"/>
 
                 </TableRow>
@@ -191,11 +127,4 @@
         </LinearLayout>
 
     </ScrollView>
-    <Button
-        android:id="@+id/btn_view_peta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/tampilkan_peta_wilayah"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="8dp"/>
 </RelativeLayout>

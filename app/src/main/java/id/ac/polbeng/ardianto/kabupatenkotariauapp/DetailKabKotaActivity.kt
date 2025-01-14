@@ -8,8 +8,9 @@ import id.ac.polbeng.ardianto.kabupatenkotariauapp.databinding.ActivityDetailKab
 
 class DetailKabKotaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailKabKotaBinding
+
     companion object {
-        const val EXTRA_KAB_KOTA = "extra_kab_kota"
+        const val EXTRA_WISATA = "extra_wisata"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,25 +20,16 @@ class DetailKabKotaActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val dataKabKota = intent.getParcelableExtra<KabKota>(EXTRA_KAB_KOTA) as KabKota
+        val dataWisata = intent.getParcelableExtra<Wisata>(EXTRA_WISATA) as Wisata
 
-        Glide.with(applicationContext)
-            .load(dataKabKota.gambar)
+        Glide.with(this)
+            .load(dataWisata.gambar)
             .into(binding.imgItemPhoto)
 
-        binding.tvNama.text = dataKabKota.kabupaten_kota
-        binding.tvPusatPemerintahan.text = dataKabKota.pusat_pemerintahan
-        binding.tvBupatiWalikota.text = dataKabKota.bupati_walikota
-        binding.tvLuasWilayah.text = dataKabKota.luas_wilayah.toString()
-        binding.tvJumlahPenduduk.text = dataKabKota.jumlah_penduduk.toString()
-        binding.tvJumlahKecamatan.text = dataKabKota.jumlah_kecamatan.toString()
-        binding.tvJumlahKelurahan.text = dataKabKota.jumlah_kelurahan.toString()
-        binding.tvJumlahDesa.text = dataKabKota.jumlah_desa.toString()
-
-        binding.btnViewPeta.setOnClickListener {
-            val showViewPeta = Intent(this@DetailKabKotaActivity, ViewPetaActivity::class.java)
-            showViewPeta.putExtra(ViewPetaActivity.EXTRA_URL_PETA, dataKabKota.url_peta_wilayah)
-            startActivity(showViewPeta)
-        }
+        binding.tvNama.text = dataWisata.nama
+        binding.tvLokasiWisata.text = dataWisata.lokasi
+        binding.tvDetailWisata.text = dataWisata.detail
+        binding.tvRatingWisata.text = dataWisata.rating.toString()
+        binding.tvUlasanWisata.text = dataWisata.ulasan.toString()
     }
 }
